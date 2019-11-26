@@ -1,0 +1,49 @@
+<div class="book-details-wrapper" *ngIf="bookDetailsLoaded">
+  <div class="book-cover">
+    <img src="https://convertedbooks.s3.ap-south-1.amazonaws.com/{{bookDetails.id}}.jpg" alt="cover image">
+  </div>
+  <div class="book-details">
+    <mat-card>
+      <mat-card-header>
+        <table style="width: 100%">
+          <tr>
+            <td><mat-card-title>{{bookDetails.title | titlecase}}</mat-card-title></td>
+          </tr>
+          <tr>
+            <td><mat-card-subtitle><mat-icon>person</mat-icon>{{bookDetails.authorName | titlecase}}</mat-card-subtitle></td>
+            <td><mat-card-subtitle><mat-icon>schedule</mat-icon>{{bookDetails.publishedAt}}</mat-card-subtitle></td>
+          </tr>
+          <tr>
+            <td><mat-card-subtitle>
+              <mat-icon>local_offer</mat-icon>{{bookDetails.typeName | titlecase}}
+            </mat-card-subtitle></td>
+            <td><mat-card-subtitle>
+              <mat-icon>label</mat-icon>
+              <div *ngFor="let genre of bookDetails.genres">{{genre}} &nbsp;</div>
+            </mat-card-subtitle></td>
+          </tr>
+        </table>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>{{bookDetails.description}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="price">
+          <i class="fas fa-rupee-sign"></i>{{bookDetails.price}}
+        </div>
+        <div class="action-buttons-purchased" *ngIf="!getHasPurchased()">
+          <button mat-raised-button class="style-button" (click)="goToPayment()">Purchase</button>
+          <button mat-raised-button class="style-button" (click)="preview()">{{bookDetails.chapterName[chapterIndex]}}</button>
+          <button mat-raised-button class="style-button" (click)="requestNext()" *ngIf="!getLastChapter() && chapterDetailsLoaded" [disabled]="getReleaseNext()">Request Next Chapter</button>
+        </div>
+        <div class="action-buttons-not-purchased" *ngIf="getHasPurchased()">
+          <button mat-raised-button class="style-button" [matMenuTriggerFor]="menu" color="primary">Download</button>
+          <mat-menu #menu="matMenu">
+            <a mat-menu-item (click)="downloadPdf()">PDF</a>
+          </mat-menu>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

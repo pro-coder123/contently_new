@@ -1,0 +1,139 @@
+<div class="edit-profile-page">
+    <div class="trending-books">
+        <h3 style="">Edit Your Profile</h3>
+        </div>
+<br><br>
+<mat-card>
+              <mat-horizontal-stepper  #stepper>
+                <mat-step [stepControl]="firstFormGroup">
+                  <form [formGroup]="firstFormGroup">
+                        <ng-template matStepLabel>Fill out your details</ng-template>
+                        <div class="fields-two">
+                            <mat-form-field class="input-field">
+                              <input #firstname formControlName="firstName" matInput placeholder="First Name" class="col">
+                            </mat-form-field>
+                          
+                            <mat-form-field class="input-field" >
+                              <input #lastname formControlName="lastName" matInput placeholder="Last Name" class="col">
+                            </mat-form-field>
+                          </div>
+                          <br>
+                          <div class="fields-two">
+                            <mat-form-field class="input-field">
+                              <mat-label>Gender</mat-label>
+                              <mat-select formControlName="gender" [(value)]="gender">
+                                <mat-option value="Female">Female</mat-option>
+                                <mat-option value="Male">Male</mat-option>
+                                <mat-option value="Other">Other</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                         
+                            <mat-form-field class="input-field">
+                              <input formControlName="date" matInput [matDatepicker]="dob" [max]="maxDate" placeholder="Date of birth" #date>
+                              <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                              <mat-datepicker #dob></mat-datepicker>
+                            </mat-form-field>
+                          </div>
+                          <br>
+                          <div class="fields-two">
+                              <mat-form-field class="input-field" >
+                                <input formControlName="email" #email matInput placeholder="Email" class="col">
+                                <mat-error *ngIf="!firstFormGroup.controls['email'].valid && firstFormGroup.controls['email'].touched">
+                                  {{ getErrorEmail() }}
+                                </mat-error>
+                              </mat-form-field>
+
+                              <mat-form-field class="input-field">
+                                  <input formControlName="contact" #contact matInput placeholder="Contact Number" class="col">
+                                  <mat-error *ngIf="!firstFormGroup.controls['contact'].valid && firstFormGroup.controls['contact'].touched">
+                                    {{ getErrorPhone() }}
+                                  </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <br>
+                          <div class="fields-two">
+                            <mat-form-field class="input-field">
+                              <input formControlName="nationality" #nationality matInput placeholder="Nationality" class="col">
+                            </mat-form-field>
+                        
+                            <mat-form-field class="input-field">
+                              <input #address1 formControlName="address1" matInput placeholder="Address" class="col">
+                            </mat-form-field>
+                          </div>
+                          <br>
+                          <div class="fields-two">
+                            <mat-form-field class="input-field">
+                              <input #address2 formControlName="address2" matInput placeholder="State" class="col">
+                            </mat-form-field>
+                         
+                            <mat-form-field class="input-field">
+                              <input #address3 formControlName="address3" matInput placeholder="Country" class="col">
+                            </mat-form-field>
+                          </div>
+              
+                        <div>
+                          <button mat-button  class="back-button" matStepperPrevious>Back</button>
+                          <button mat-button  matStepperNext
+                                  (click)="addPersonalDetails(firstname.value, lastname.value, nationality.value, address1.value, address2.value, address3.value, date.value, email.value, contact.value)">
+                            Next
+                          </button>
+                        </div>
+                  </form>
+                </mat-step>
+                <mat-step>
+                  <form >
+                    <ng-template matStepLabel>Tell us your Interests</ng-template>
+                    <div class="genre-radio-group">
+                       
+
+                        <div >
+                          <h5><label>Type of Content : </label></h5>
+                          <mat-radio-group (change)="typeChanged()" name="type" [(ngModel)]="typeSelected">
+                            <mat-radio-button class="input-item" value="fiction">Fiction</mat-radio-button>
+                            <mat-radio-button class="input-item" value="non-fiction">Non Fiction</mat-radio-button>
+                          </mat-radio-group>
+                        </div>
+                        <br>
+                        <div >
+                          <h5><label>Genre: </label></h5>
+                          <mat-form-field class="input-group">
+                            <mat-chip-list #chipList>
+                              <mat-chip *ngFor="let genre of genresSelected" [selectable]="true" [removable]="true"
+                                        (removed)="removeGenre(genre)">
+                                {{genre}}
+                                <mat-icon matChipRemove>cancel</mat-icon>
+                              </mat-chip>
+                              <label>
+                                <input #genreInput placeholder="Add Genre" [formControl]="genreFormControl"
+                                       [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+                                       (matChipInputTokenEnd)="add($event)" style="width: 100%;" class="genre-input">
+                              </label>
+                            </mat-chip-list>
+                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                              <mat-option *ngFor="let genre of filteredGenres | async" [value]="genre">
+                                {{genre | titlecase}}
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+                        </div>
+
+
+                        
+                        <br>
+                        </div>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button matStepperNext (click)="saveGenre()">Save</button>
+                    </div>
+                  </form>
+                 
+                    
+                </mat-step>
+              </mat-horizontal-stepper>
+              
+</mat-card>
+<br><br>
+</div>
+
+

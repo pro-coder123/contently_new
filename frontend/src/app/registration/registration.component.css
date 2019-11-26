@@ -1,0 +1,115 @@
+.register-component{
+  background-image: url('../../assets/images/side_bg.jpg');
+}
+/*new css*/
+.register-component-heading{
+  text-align: center;
+  padding: 10px;
+}
+.register-component-body{
+  padding: 10px 10px;
+  margin: 0 auto;
+  width: 60%;
+}
+.fields{
+  width: 60%;
+}
+
+form{
+  margin-left:22%;
+}
+
+.space{
+  height: 120px;
+}
+
+.input-field{
+  padding-left: 3%;
+}
+
+.fields-two{
+  display: inline;
+}
+/* mat-horizontal-stepper{
+  padding: 0 20px;
+  border-radius: 5px;;
+  box-shadow: 0 0 10px 0 lightslategrey;
+  height:475px;
+  height: 100%;
+} */
+.back-button{
+  margin-right: 20px;
+}
+/*end new css*/
+
+
+.register-component h2{
+    padding-left: 20%;
+}
+
+.gender-radio{
+  font-weight: 500;
+  color:white;
+}
+
+
+.reg-form{
+  margin-left: 20%;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+input{
+  margin-left: 5px;
+}
+
+.trending-books{
+  padding: 3%;
+  color: rgb(15, 15, 15);
+  /* text-shadow: 4px 4px #333333; */
+  background-image: url('../../assets/images/trend.jpg');
+  background-repeat: initial;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: 1px solid rgb(26, 26, 26);
+  outline-offset: -15px;
+  letter-spacing: 20px;
+  text-align: center;
+}
+
+/* mat-horizontal-stepper{
+  background-color: rgb(24, 24, 24);
+  color: white;
+} */
+
+
+@media only screen and (max-width: 600px) {
+  .trending-books{
+    padding: 4%;
+    color: rgb(15, 15, 15);
+    /* text-shadow: 4px 4px #333333; */
+    background-image: url('../../assets/images/trend.jpg');
+    background-repeat: initial;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: 1px solid rgb(26, 26, 26);
+    outline-offset: -15px;
+    letter-spacing: 20px;
+    text-align: center;
+  }
+
+  .register-component-body{
+    padding: 10px 10px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+}

@@ -1,0 +1,33 @@
+<div class="select-editor-dialog">
+
+                <mat-form-field class="example-full-width"  style="width: 60%;">
+                        <input [(ngModel)] = "searchTerm" (ngModelChange) = "search()" matInput placeholder="Search Illustrator">
+                     </mat-form-field>
+          <mat-tab-group>
+                <mat-tab class="helper-tab" label="Recommended Illustrators">
+
+                <div *ngFor="let illustrator of illustratorListFiltered " class="list-editors">
+                                <mat-card  matRipple  class="editor-card" (click)="selectIllustrator(illustrator.name)"  cdkFocusInitial>
+                                       <h5>{{illustrator.name}}</h5>
+                                       <div class="price-experiance">
+                                        <h6>Cost: {{illustrator.cost}}</h6>
+                                        <h6>Experience: {{illustrator.exp}}</h6>
+                                    </div>
+                                </mat-card>
+                           </div>
+                 <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+                </mat-tab>
+
+                <mat-tab class="helper-tab" label="Show All Illustrators">
+                        <div *ngFor="let illustrator of allIllustratorListFiltered" class="list-editors">
+                                <mat-card  matRipple  class="editor-card" (click)="selectIllustrator(illustrator.username)"  cdkFocusInitial>
+                                    <h5>{{illustrator.username}}</h5>
+                                    <div class="price-experiance">
+                                        <h6>Cost: {{illustrator.cost}}</h6>
+                                        <h6>Experience: {{illustrator.experience}}</h6>
+                                    </div>
+                                </mat-card>
+                        </div>
+                </mat-tab>
+        </mat-tab-group>
+        </div>

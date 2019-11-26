@@ -1,0 +1,162 @@
+<!-- new landing page -->
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               opened="false"
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               mode="over">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <mat-form-field class="search-form" color="accent">
+        <input matInput #searchValue type="search" placeholder="Search">
+      </mat-form-field>
+      <button mat-icon-button (click)="drawer.toggle(); search(searchValue.value)">
+        <mat-icon>search</mat-icon>
+      </button>
+      <div *ngIf="!ifToken(); then thenBlock; else elseBlock"></div>
+      <ng-template #thenBlock>
+        <a mat-list-item routerLink="/register">Register</a>
+        <a mat-list-item (click)="drawer.toggle(); onLogin()">Login</a>
+      </ng-template>
+      <ng-template #elseBlock>
+        <a mat-list-item routerLink="/afterLogin" (click)="drawer.toggle()">Home</a>
+        <a mat-list-item routerLink="/dashboard" (click)="drawer.toggle()">Profile</a>
+        <a mat-list-item (click)="removeNewNotifications()" matBadge="{{notificationCount}}" matBadgeColor="accent"
+           [matMenuTriggerFor]="notification">Notifications</a>
+        <mat-menu class="notification-menu" #notification="matMenu">
+          <mat-card *ngIf="ifNotifications()">No new notifications</mat-card>
+          <div class="notifications" *ngIf="!ifNotifications() && getNotificationLoaded()">
+            <div *ngFor="let notification of notificationList.slice().reverse();index as i">
+              <div *ngIf="isAuthor()">
+
+                <mat-card *ngIf="notification.status" style="background-color: #fd7f7fc5; color: black;">
+                  <p>{{notification.message}}</p>
+                </mat-card>
+
+                <mat-card *ngIf="!notification.status">
+                  <p>{{notification.message}}</p>
+                </mat-card>
+
+
+              </div>
+              <div *ngIf="!isAuthor()">
+                <mat-card *ngIf="notification.status" style="background-color: #fd7f7fc5; color: black;">
+                  <mat-card-content><p>{{notification.message}}</p></mat-card-content>
+                  <mat-card-actions>
+                    <button mat-button color="primary" (click)="acceptRequest(notification,i)">Accept</button>
+                    <button mat-button color="primary" (click)="deleteRequest(notification,i)">Reject</button>
+                  </mat-card-actions>
+                </mat-card>
+
+                <mat-card *ngIf="!notification.status">
+                  <mat-card-content><p>{{notification.message}}</p></mat-card-content>
+                  <mat-card-actions>
+                    <button mat-button color="primary" (click)="acceptRequest(notification,i)">Accept</button>
+                    <button mat-button color="primary" (click)="deleteRequest(notification,i)">Reject</button>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </mat-menu>
+        <a mat-button (click)="drawer.toggle(); onLogout()">Logout</a>
+      </ng-template>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="navbar">
+    <mat-toolbar color="primary" style="justify-content: space-between; position: fixed; z-index: 1000;">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="!showNavigationBarLinks">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <!--   Nav bar brand name and logo   -->
+      <nav class="navbar navbar-dark ">
+        <a class="navbar-brand" routerLink="/index" style="color: rgb(0, 0, 0);">
+          <img src="https://www.logolynx.com/images/logolynx/36/362087235008be84086f892df697f50d.png" width="30"
+               height="30" class="d-inline-block align-top" alt="">
+          ontently
+        </a>
+      </nav>
+      <div>
+        <mat-nav-list *ngIf="showNavigationBarLinks">
+          <mat-form-field class="search-form" color="accent">
+            <input matInput (keyup.enter)="search(searchValue.value)" type="search" #searchValue placeholder="Search">
+          </mat-form-field>
+          <button mat-icon-button (click)="search(searchValue.value)">
+            <mat-icon>search</mat-icon>
+          </button>
+
+          <div *ngIf="!ifToken(); then thenBlock; else elseBlock"></div>
+
+          <ng-template #thenBlock>
+            <a mat-button routerLink="/register">Register</a>
+            <button mat-button (click)="onLogin()">Login</button>
+          </ng-template>
+
+          <ng-template #elseBlock>
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>person</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <a mat-menu-item routerLink="/afterLogin">Home</a>
+              <a mat-menu-item routerLink="/dashboard">Profile</a>
+              <a mat-menu-item (click)="onLogout()">Logout</a>
+            </mat-menu>
+            <button (click)="removeNewNotifications()" mat-button
+                    matBadge="{{notificationCount}}" matBadgeColor="accent" [matMenuTriggerFor]="notification"
+                    style="margin-right: 10px;"><i class="material-icons">notifications_none</i></button>
+            <mat-menu class="notification-menu" #notification="matMenu">
+              <mat-card *ngIf="ifNotifications()">No new notifications</mat-card>
+              <div class="notifications" *ngIf="!ifNotifications() && getNotificationLoaded()">
+                <div *ngFor="let notification of notificationList.slice().reverse();index as i">
+                  <div *ngIf="isAuthor()">
+
+                    <mat-card *ngIf="notification.status" style="background-color: #fd7f7fc5; color: black;"
+                              class="notification">
+                      <p>{{notification.message}}</p>
+                    </mat-card>
+
+                    <mat-card *ngIf="!notification.status" class="notification">
+                      <p>{{notification.message}}</p>
+                    </mat-card>
+
+
+                  </div>
+                  <div *ngIf="!isAuthor()">
+                    <mat-card *ngIf="notification.status" style="background-color: #fd7f7fc5; color: black;" class="notification">
+                      <mat-card-content><p>{{notification.message}}</p></mat-card-content>
+                      <mat-card-actions>
+                        <button mat-button color="primary" (click)="acceptRequest(notification,i)">Accept</button>
+                        <button mat-button color="primary" (click)="deleteRequest(notification,i)">Reject</button>
+                      </mat-card-actions>
+                    </mat-card>
+
+                    <mat-card *ngIf="!notification.status" class="notification">
+                      <mat-card-content><p>{{notification.message}}</p></mat-card-content>
+                      <mat-card-actions>
+                        <button mat-button color="primary" (click)="acceptRequest(notification,i)">Accept</button>
+                        <button mat-button color="primary" (click)="deleteRequest(notification,i)">Reject</button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+            </mat-menu>
+            <!-- <button mat-button >TEST</button> -->
+          </ng-template>
+        </mat-nav-list>
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div class="parallax" style="margin-top: 64px;">
+      <div class="router-component-wrapper">
+        <router-outlet></router-outlet>
+        <div class="push"></div>
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

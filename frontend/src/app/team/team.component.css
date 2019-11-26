@@ -1,0 +1,25 @@
+.our-authors-body{
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.author-card{
+  color: black;
+  width: 300px;
+  height: 350px;
+  background-color: #f1797f;
+  text-align: center;
+  align-items: center;
+  margin: 10px;
+}
+.mat-card-image:first-child {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+mat-card:hover{
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.568);
+  transition: 0.2s;
+}

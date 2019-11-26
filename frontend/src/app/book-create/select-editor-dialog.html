@@ -1,0 +1,37 @@
+<div class="select-editor-dialog">
+        <mat-form-field class="example-full-width"  style="width: 80%;">
+                <input  [(ngModel)] = "searchTerm" (ngModelChange) = "search()"  matInput placeholder="Search Editor" value="">
+             </mat-form-field>
+
+    <mat-tab-group>
+        <mat-tab class="helper-tab" label="Recommended Editors">
+
+        <div *ngFor="let editor of editorListFiltered" class="list-editors">
+                        <mat-card  matRipple  class="editor-card" (click)="selectEditor(editor.name)"  cdkFocusInitial>
+                                <h5>{{editor.name}}</h5>
+                                <div class="price-experiance">
+                                        <h6>Cost: {{editor.cost}}</h6>
+                                        <h6>Experience: {{editor.exp}}</h6>
+                                    </div>
+                        </mat-card>
+                        </div>
+        <!-- <mat-paginator [length]="illustratorListFiltered.length"
+        [pageSize]="5"
+        [pageSizeOptions]="pageSizeOptions">
+        </mat-paginator>          -->
+        </mat-tab>
+
+        <mat-tab class="helper-tab" label="Show All Editors">
+        <div *ngFor="let editor of allEditorListFiltered" class="list-editors">
+                <mat-card  matRipple  class="editor-card" (click)="selectEditor(editor.username)"  cdkFocusInitial>
+                               <h5> {{editor.username}}</h5>
+                               <div class="price-experiance">
+                                <h6>Cost: {{editor.cost}}</h6>
+                                <h6>Experience: {{editor.experience}}</h6>
+                            </div>
+                </mat-card>
+        </div>
+        </mat-tab>
+</mat-tab-group>
+
+</div>

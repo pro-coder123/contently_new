@@ -1,0 +1,27 @@
+<mat-card style="height: 100%" *ngIf="!replyDrawer">
+  <mat-card-header>
+    <mat-card-title>Issues</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content *ngIf="!issuesLoaded">
+    <mat-spinner></mat-spinner>
+  </mat-card-content>
+  <mat-card-content *ngIf="issuesLoaded">
+    <mat-list>
+      <mat-list-item style="cursor: pointer" *ngFor="let issue of issueList; index as i" [matMenuTriggerFor]="menu"
+                     [ngClass]="{disabled: issue.status === 'closed'}">
+        <h5 mat-line>{{issue.title}}</h5>
+        <p mat-subheader>{{issue.createdOn}}</p>
+        <p mat-subheader>{{issue.creator}}</p>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item (click)="replyToIssue(i)" *ngIf="issue.status === 'open'">Reply</a>
+          <a mat-menu-item (click)="closeIssue(i)" *ngIf="issue.status === 'open'">Close</a>
+        </mat-menu>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="newIssue()">New Issue</button>
+  </mat-card-actions>
+</mat-card>

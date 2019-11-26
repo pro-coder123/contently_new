@@ -1,0 +1,7 @@
+.disabled {
+  pointer-events:none;
+  opacity:.5;
+}
+mat-spinner{
+  margin: 10px auto;
+}

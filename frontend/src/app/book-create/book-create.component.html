@@ -1,0 +1,202 @@
+<mat-sidenav-container>
+  <mat-sidenav position="end" mode="over" #drawer class="chat-sidenav" fixedInViewport>
+    <app-issues [fileName]="fileName"></app-issues>
+  </mat-sidenav>
+
+  <div *ngIf="bookDetailsLoaded">
+    <br>
+    <mat-card class="book-details">
+      <img mat-card-image src="https://convertedbooks.s3.ap-south-1.amazonaws.com/{{bookDetails.id}}.jpg"  *ngIf="getBrokenImage()" (error)="coverImage()" alt="cover image">
+      <h2>{{bookDetails.title}}</h2>
+      <mat-card-subtitle style="display: flex; align-items: center">
+        <mat-icon style="margin-right: 10px">local_offer</mat-icon>
+        {{bookDetails.typeName | titlecase}}
+        <mat-icon style="margin-right: 10px; margin-left: 40px;">label</mat-icon>
+        <span *ngFor="let genre of bookDetails.genres">{{genre | titlecase}} &nbsp;</span>
+      </mat-card-subtitle>
+
+      <p style="text-align: justify">{{bookDetails.description}}</p>
+    </mat-card>
+    <br>
+    <div *ngIf="ifAuthor()">
+      <mat-card *ngIf="isSelectHelper()" class="editor-illustrator">
+        <mat-grid-list cols="2" rowHeight="175px">
+          <mat-grid-tile class="choose-editor-tile">
+            <div class="select-editor-header">
+              <mat-grid-tile-header *ngIf="!bookDetails.editorName" matRipple  class=""
+                                    (click)="openSelectEditorDialog()">
+                <h2>Choose an Editor</h2>
+              </mat-grid-tile-header>
+              <mat-grid-tile-header *ngIf="bookDetails.editorStatus == 'rejected'" matRipple
+                                    class=""
+                                    (click)="openSelectEditorDialog()">
+                <h2>Choose an Editor</h2>
+              </mat-grid-tile-header>
+              <mat-grid-tile-header *ngIf="bookDetails.editorName && bookDetails.editorStatus != 'rejected'">
+                <h2>Editor Selected</h2>
+              </mat-grid-tile-header>
+            </div>
+            <h3 *ngIf="bookDetails.editorName">{{bookDetails.editorName}}</h3>
+            <mat-grid-tile-footer *ngIf="bookDetails.editorStatus" >
+              <h4>{{bookDetails.editorStatus | uppercase }}</h4>
+            </mat-grid-tile-footer>
+          </mat-grid-tile>
+
+          <mat-grid-tile class="choose-editor-tile">
+            <div class="select-editor-header">
+              <mat-grid-tile-header *ngIf="!bookDetails.designerName" matRipple
+                                    (click)="openSelectIllustratorDialog()">
+                <h2>Choose an Illustrator</h2>
+              </mat-grid-tile-header>
+              <mat-grid-tile-header
+                *ngIf="bookDetails.designerStatus == 'rejected' || bookDetails.designerStatus == null"
+                matRipple (click)="openSelectIllustratorDialog()">
+                <h2>Choose an Illustrator</h2>
+              </mat-grid-tile-header>
+              <mat-grid-tile-header *ngIf="bookDetails.designerName && bookDetails.designerStatus != 'rejected'">
+                <h2>Illustrator Selected</h2>
+              </mat-grid-tile-header>
+            </div>
+            <h3 *ngIf="bookDetails.designerName">{{bookDetails.designerName}}</h3>
+            <mat-grid-tile-footer *ngIf="bookDetails.designerStatus">
+              <h4>{{bookDetails.designerStatus | uppercase }}</h4>
+            </mat-grid-tile-footer>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+      </mat-card>
+      <br>
+
+      <div *ngIf="!isSelectHelper() && !noAutomate">
+        <mat-card *ngIf="!isSelectHelper()" class="editor-illustrator">
+          <mat-grid-list *ngIf="bookDetails.editorName" cols="2" rowHeight="175px">
+            <mat-grid-tile class="choose-editor-tile">
+              <div class="select-editor-header">
+                <mat-grid-tile-header>
+                  <h2>Editor Selected</h2>
+                </mat-grid-tile-header>
+              </div>
+              <h3 *ngIf="bookDetails.editorName">{{bookDetails.editorName}}</h3>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile class="choose-editor-tile">
+
+              <div class="select-editor-header">
+                <mat-grid-tile-header>
+                  <h2>Illustrator Selected</h2>
+                </mat-grid-tile-header>
+              </div>
+              <h3 *ngIf="bookDetails.designerName">{{bookDetails.designerName}}</h3>
+
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-card>
+        <br></div>
+    </div>
+
+    <div class="section-list">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Chapters</mat-card-title>
+        </mat-card-header>
+
+        <mat-divider></mat-divider>
+
+        <mat-card-content>
+          <mat-list class="drag-list" cdkDropList (cdkDropListDropped)="drop($event)">
+            <mat-list-item class="drag-list-item" cdkDrag *ngFor="let chapter of bookDetails.status;index as i">
+              <div *cdkDragPreview><h5 mat-line>{{chapter.chapterName}}</h5></div>
+
+              <div class="chapter-title">
+                <!-- <mat-icon mat-list-icon cdkDragHandle>drag_handle</mat-icon> -->
+                <mat-icon mat-list-icon cdkDragHandle></mat-icon>
+                <mat-icon mat-list-icon>folder</mat-icon>
+                <h5 mat-line>{{chapter.chapterName}}</h5>
+              </div>
+
+              <div class="status">
+                <button mat-raised-button style="margin-right: 10px;"
+                        [matMenuTriggerFor]="menu" [disabled]="!getShowEditButton(i)">{{chapter.status}}</button>
+                <mat-menu #menu="matMenu">
+                  <button *ngFor="let status of chapterStatus" mat-menu-item
+                          (click)="changeChapterStatus(status,i)">{{status}}</button>
+                </mat-menu>
+              </div>
+
+              <div class="buttons-actions">
+                <button mat-raised-button [matMenuTriggerFor]="actionsMenu">Actions</button>
+                <mat-menu #actionsMenu="matMenu">
+                  <button mat-menu-item color="primary" *ngIf="getShowEditButton(i)"
+                          (click)="editFile(chapter.chapterName)" style="margin-right: 10px">
+                    <mat-icon>edit</mat-icon>
+                    Edit
+                  </button>
+                  <button mat-menu-item color="primary" (click)="preview(chapter.chapterName)"
+                          style="margin-right: 10px">
+                    <mat-icon class="mat_icon">remove_red_eye</mat-icon>
+                    Preview
+                  </button>
+
+                  <button mat-menu-item (click)="openIssuesComponent(chapter.chapterName); drawer.toggle()">
+                    <mat-icon>comment</mat-icon>
+                    Issues
+                  </button>
+
+                  <button mat-menu-item (menuOpened)="commits(chapter.chapterName)"
+                          (click)="commits(chapter.chapterName)" [matMenuTriggerFor]="commitMenu">
+                    <mat-icon>update</mat-icon>
+                    Versions
+                  </button>
+                  <mat-menu #commitMenu="matMenu" xPosition="before">
+                    <div *ngIf="commitListLoaded">
+                      <button style="width: 400px" mat-menu-item *ngFor="let commit of commitList"
+                              (click)="singleCommit(chapter.chapterName, commit.sha)">{{commit.commit.author.name}}
+                        - {{commit.commit.message}}</button>
+                    </div>
+                    <div style="width: 400px; align-items: center" *ngIf="!commitListLoaded">
+                      <mat-spinner></mat-spinner>
+                    </div>
+                  </mat-menu>
+                </mat-menu>
+
+              </div>
+
+
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+
+        <mat-card-actions *ngIf="ifAuthor()">
+          <div class="plagiarism">
+            <button mat-raised-button class="style-button" (click)="compileFile()">Check Plagiarism</button>
+            <span *ngIf="!bookDetails.plagarismCheckDone && !bookDetails.plagarised"> Your never checked for plagiarism. Press button to check</span>
+            <span *ngIf="!bookDetails.plagarismCheckDone && bookDetails.plagarised"> Plagiarism checking under process. Check back later</span>
+            <span *ngIf="bookDetails.plagarismCheckDone && !bookDetails.plagarised"> Your content is not plagiarised</span>
+            <span *ngIf="bookDetails.plagarismCheckDone && bookDetails.plagarised"> Your content is plagiarised. Please modify and check</span>
+          </div>
+          <div *ngIf="!bookDetails.plagarismCheckDone && bookDetails.plagarised">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
+          <div>
+            <button style="margin-right: 10px;" mat-raised-button class="style-button" (click)="addNewSection()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <span [matTooltipDisabled]="isPublish()"
+                  matTooltip="Please check for plagiarism, mark all chapters as 'Finished' and upload cover image">
+            <button [disabled]="!isPublish()" (click)="onPublish()" mat-raised-button
+                    class="style-button">Publish
+            </button>
+          </span>
+            <input style="margin-left: 10px" class="style-button" type='file' (change)="onSelectFile($event)">
+          </div>
+
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+    <br>
+
+  </div>
+</mat-sidenav-container>
+

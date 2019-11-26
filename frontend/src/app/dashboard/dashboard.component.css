@@ -1,0 +1,131 @@
+.profile-details, .contents-under-development, .books-published, .purchases-made, .testing{
+  width: 80%;
+  margin: 10px auto;
+}
+
+.info-label > ::ng-deep figure {
+  justify-content: flex-end;
+  padding: 0 5px;
+}
+
+.info-value > ::ng-deep figure {
+  padding: 5px;
+  justify-content: flex-start;
+  position: absolute;
+}
+
+.info-value-textarea {
+  padding: 10px;
+  height: 100px;
+  width:  300px;
+  resize: none;
+  background-color: #252525;
+  color: white;
+  border-width: 0;
+  text-align: justify;
+  vertical-align: center;
+  overflow-y: scroll;
+}
+mat-icon {
+  color: darkslategray;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.list-item-entry:hover {
+  background-color: lightgrey;
+}
+.dashboard-wrapper {
+  
+}
+.content-title {
+  font-size: 2em;
+}
+
+.trending-books{
+  padding: 3%;
+  color: rgb(15, 15, 15);
+  /* text-shadow: 4px 4px #333333; */
+  background-image: url('../../assets/images/trend.jpg');
+  background-repeat: initial;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: 1px solid rgb(26, 26, 26);
+  outline-offset: -15px;
+  letter-spacing: 20px;
+}
+
+.trending-books h3{
+  width: 100%;
+}
+
+.new-content-button{
+  margin-left: 70%;
+  background-color: rgb(250, 104, 104);
+}
+
+.edit-button{
+  background-color: rgb(250, 104, 104);
+}
+
+.contents-under-development mat-grid-tile{
+  background-color: rgb(53, 53, 53);
+}
+
+mat-icon{
+  color: white;
+}
+
+.content-card{
+  margin: 1%;
+  background-color: #252525;
+  height: 430px;
+  cursor: pointer;
+}
+.content-card mat-card-header{
+  padding: 2px;
+}
+.content-card button{
+  margin-bottom: 10px;
+  position: absolute;
+  bottom: 0;
+}
+
+.content-cards{
+  display: flex;
+  overflow-x: scroll;
+}
+
+.card-e-d{
+  display: flex;
+}
+.card-item{
+  margin-left: 5%;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .trending-books{
+    padding: 4%;
+    color: rgb(15, 15, 15);
+    /* text-shadow: 4px 4px #333333; */
+    background-image: url('../../assets/images/trend.jpg');
+    background-repeat: initial;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: 1px solid rgb(26, 26, 26);
+    outline-offset: -15px;
+    letter-spacing: 10px;
+  }
+  
+  .profile-details, .contents-under-development, .books-published, .purchases-made, .testing{
+    width: 100%;
+    margin: 10px auto;
+  }
+
+  .new-content-button{
+    margin-left: 30%;
+    }
+}

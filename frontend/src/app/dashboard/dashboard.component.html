@@ -1,0 +1,141 @@
+<div class="dashboard-wrapper">
+  <div class="trending-books">
+    <h3 style="margin-left: 4%;">Your Dashboard</h3>
+    </div>
+  <br>
+  <mat-expansion-panel class="profile-details" >
+    <mat-expansion-panel-header>
+      <mat-panel-title>Profile Details</mat-panel-title>
+      <!-- <mat-panel-description>{{profileData.username}}</mat-panel-description> -->
+    </mat-expansion-panel-header>
+    <mat-grid-list *ngIf="profileLoaded" cols="4" rowHeight="2em">
+      <mat-grid-tile [colspan]="1" class="info-label"><strong>First Name: </strong></mat-grid-tile>
+      <mat-grid-tile [colspan]="3" class="info-value">{{ profileData.firstName}}</mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" class="info-label"><strong>Last Name: </strong></mat-grid-tile>
+      <mat-grid-tile [colspan]="3" class="info-value">{{ profileData.lastName}}</mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" class="info-label"><strong>Gender: </strong></mat-grid-tile>
+      <mat-grid-tile [colspan]="3" class="info-value">{{ profileData.gender}}</mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" class="info-label"><strong>E-mail: </strong></mat-grid-tile>
+      <mat-grid-tile [colspan]="3" class="info-value">{{ profileData.email}}</mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" class="info-label"><strong>Phone Number: </strong></mat-grid-tile>
+      <mat-grid-tile [colspan]="3" class="info-value">{{ profileData.phoneNumber}}</mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" class="info-label"><strong>Nationality: </strong></mat-grid-tile>
+      <mat-grid-tile [colspan]="3" class="info-value">{{ profileData.nationality}}</mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" class="info-label"><strong>Address: </strong></mat-grid-tile>
+      <mat-grid-tile [colspan]="3" class="info-value">{{ profileData.addressLine1}}</mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" class="info-label"></mat-grid-tile>
+      <mat-grid-tile [colspan]="3" class="info-value">{{ profileData.addressLine2}}</mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" class="info-label"></mat-grid-tile>
+      <mat-grid-tile [colspan]="3" class="info-value">{{ profileData.addressLine3}}</mat-grid-tile>
+    </mat-grid-list>
+    <mat-action-row style="justify-content: center">
+      <a mat-raised-button  (click)="editProfile()" class="edit-button">Edit Profile</a>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel class="testing">
+    <mat-expansion-panel-header>
+        Current Projects
+        <button mat-button  class="new-content-button" routerLink="/create-content" *ngIf="ifAuthor()">New Content</button>
+      </mat-expansion-panel-header>
+      <div class="content-cards">
+      <mat-card class="content-card" *ngFor="let content of contentsList, index as i">
+          <mat-card-header>
+              <mat-card-title>  {{content.title}}</mat-card-title>
+              <mat-card-subtitle>{{content.authorName}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="card-item">
+              <mat-icon>local_offer</mat-icon><p>{{content.typeName }} ,&nbsp; {{content.genres}}</p>
+              <mat-icon>date_range</mat-icon><p>{{content.createdAt}}</p>
+            </div>
+              <div class="card-e-d">
+           <div class="card-item" *ngIf="ifConfirmed(content.editorStatus)">
+              <mat-icon>border_color</mat-icon><p>{{content.editorName}}</p>
+            </div>
+            <div class="card-item" *ngIf="ifConfirmed(content.designerStatus)">
+              <mat-icon>format_paint</mat-icon><p>{{content.designerName}}</p>
+              </div>
+            </div>
+            <div *ngIf="!ifConfirmed(content.editorStatus) && !ifConfirmed(content.designerStatus)" style="height: 55px;"></div>
+              <textarea class="info-value-textarea" disabled>{{content.description}}</textarea>
+          </mat-card-content>
+              <button mat-raised-button color="primary"  (click)="edit(i)" class="edit-button" >Edit</button>
+      </mat-card>
+    </div>
+</mat-expansion-panel>
+
+  <mat-expansion-panel class="books-published">
+    <mat-expansion-panel-header>
+      Published Books
+    </mat-expansion-panel-header>
+
+      <div class="content-cards">
+        <mat-card class="content-card" *ngFor="let content of publishedList, index as i" (click)="goToBook(content.id)">
+            <mat-card-header>
+                <mat-card-title>  {{content.title}}</mat-card-title>
+                <mat-card-subtitle>{{content.authorName}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="card-item">
+                <mat-icon>local_offer</mat-icon><p>{{content.typeName }} ,&nbsp; {{content.genres}}</p>
+                <mat-icon>date_range</mat-icon><p>{{content.createdAt}}</p>
+              </div>
+                <div class="card-e-d">
+             <div class="card-item" *ngIf="ifConfirmed(content.editorStatus)">
+                <mat-icon>border_color</mat-icon><p>{{content.editorName}}</p>
+              </div>
+              <div class="card-item" *ngIf="ifConfirmed(content.designerStatus)">
+                <mat-icon>format_paint</mat-icon><p>{{content.designerName}}</p>
+                </div>
+              </div>
+              <div *ngIf="!ifConfirmed(content.editorStatus) && !ifConfirmed(content.designerStatus)" style="height: 55px;"></div>
+                <textarea class="info-value-textarea" disabled>{{content.description}}</textarea>
+            </mat-card-content>
+        </mat-card>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel class="purchases-made">
+    <mat-expansion-panel-header>
+      Purchases
+    </mat-expansion-panel-header>
+
+    <div class="content-cards">
+
+      <mat-card class="content-card" *ngFor="let content of completePurchaseList, index as i" (click)="goToBook(content.id)">
+          <mat-card-header>
+              <mat-card-title>  {{content.title}}</mat-card-title>
+              <mat-card-subtitle>{{content.authorName}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="card-item">
+              <mat-icon>local_offer</mat-icon><p>{{content.typeName }} ,&nbsp; {{content.genres}}</p>
+              <mat-icon>date_range</mat-icon><p>{{content.createdAt}}</p>
+            </div>
+              <div class="card-e-d">
+           <div class="card-item" *ngIf="ifConfirmed(content.editorStatus)">
+              <mat-icon>border_color</mat-icon><p>{{content.editorName}}</p>
+            </div>
+            <div class="card-item" *ngIf="ifConfirmed(content.designerStatus)">
+              <mat-icon>format_paint</mat-icon><p>{{content.designerName}}</p>
+              </div>
+            </div>
+            <div *ngIf="!ifConfirmed(content.editorStatus) && !ifConfirmed(content.designerStatus)" style="height: 55px;"></div>
+              <textarea class="info-value-textarea" disabled>{{content.description}}</textarea>
+          </mat-card-content>
+      </mat-card>
+  </div>
+
+  </mat-expansion-panel>
+
+
+  <div style="height: 170px;"></div>
+</div>

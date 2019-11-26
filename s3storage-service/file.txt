@@ -1,0 +1,1 @@
+The big problem with the identity check is that String Internment is (as far as I could find) that it is not standardised which strings are interned. That means, theoretically "" is not necessary interned and that is implementation dependant.

@@ -1,0 +1,175 @@
+<!--<div style="background-image: url('../../assets/images/main_bg.jpeg');" class="register-component" id="contact-section">-->
+<div class="register-component" id="contact-section">
+
+  <!-- <div class="trending-books">
+    <h3 style="margin-left: 4%;">Register Here</h3>
+    </div> -->
+
+  <div class="register-component-body">
+    <mat-horizontal-stepper >
+
+      <mat-step  [editable]="false">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Fill out your details</ng-template>
+          <!-- <div>
+            <mat-form-field class="fields" >
+              <input formControlName="email" #email matInput placeholder="Email" class="col">
+              <mat-error *ngIf="!firstFormGroup.controls['email'].valid && firstFormGroup.controls['email'].touched">
+                {{ getErrorEmail() }}
+              </mat-error>
+            </mat-form-field>
+          </div> -->
+
+          <div>
+            <mat-form-field class="fields">
+              <input formControlName="username" #username matInput placeholder="Username" class="col" required>
+              <mat-error *ngIf="firstFormGroup.hasError('required', 'username')">
+                Please enter your new username
+              </mat-error>
+              <mat-error *ngIf="usernameAlreadyExists">
+                Username Already Exists
+              </mat-error>
+              <mat-error *ngIf="firstFormGroup.hasError('pattern','username')">
+                Please enter username without speacial characters or whitespace
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="fields">
+              <input formControlName="password" #password matInput placeholder="New password" 
+                     required>
+              <mat-error *ngIf="firstFormGroup.hasError('required', 'password')">
+                Please enter your new password
+              </mat-error>
+              <mat-error *ngIf="firstFormGroup.hasError('pattern', 'password')">
+                Password should have at least 8 characters in length, lowercase letters, uppercase letters, numbers and special characters.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <br>
+          <div>
+            <mat-form-field class="fields">
+              <input formControlName="confirmPassword" matInput placeholder="Confirm password"
+                     [errorStateMatcher]="matcher" type="password">
+              <mat-error *ngIf="firstFormGroup.hasError('notSame')">
+                Passwords do not match
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- <div>
+            <mat-form-field class="fields">
+              <input formControlName="contact" #contact matInput placeholder="Contact Number" class="col">
+              <mat-error *ngIf="!firstFormGroup.controls['contact'].valid && firstFormGroup.controls['contact'].touched">
+                {{ getErrorPhone() }}
+              </mat-error>
+            </mat-form-field>
+          </div> -->
+
+          <div>
+            <button mat-raised-button color="primary" matStepperNext
+                    (click)="register(username.value, password.value)">Next
+            </button>
+          </div>
+        </form>
+      </mat-step>
+      <!-- <mat-step [stepControl]="secondFormGroup" [editable]="false">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Fill out your details</ng-template>
+
+          <div class="fields-two">
+            <mat-form-field class="input-field">
+              <input #firstname matInput placeholder="First Name" class="col">
+            </mat-form-field>
+          
+            <mat-form-field class="input-field" >
+              <input #lastname matInput placeholder="Last Name" class="col">
+            </mat-form-field>
+          </div>
+          <br>
+          <div class="fields-two">
+            <mat-form-field class="input-field">
+              <mat-label>Gender</mat-label>
+              <mat-select formControlName="gender" [(value)]="gender">
+                <mat-option value="Female">Female</mat-option>
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Other">Other</mat-option>
+              </mat-select>
+            </mat-form-field>
+         
+            <mat-form-field class="input-field">
+              <input formControlName="date" matInput [matDatepicker]="dob" placeholder="Date of birth" #date>
+              <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+              <mat-datepicker #dob></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <br>
+          <div class="fields-two">
+            <mat-form-field class="input-field">
+              <input formControlName="nationality" #nationality matInput placeholder="Nationality" class="col">
+            </mat-form-field>
+        
+            <mat-form-field class="input-field">
+              <input #address1 matInput placeholder="Address" class="col">
+            </mat-form-field>
+          </div>
+          <br>
+          <div class="fields-two">
+            <mat-form-field class="input-field">
+              <input #address2 matInput placeholder="State" class="col">
+            </mat-form-field>
+         
+            <mat-form-field class="input-field">
+              <input #address3 matInput placeholder="Country" class="col">
+            </mat-form-field>
+          </div>
+          <br>
+          <div>
+            <button mat-raised-button color="primary" class="back-button" matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext
+                    (click)="addPersonalDetails(username.value, password.value, email.value, contact.value, firstname.value, lastname.value, nationality.value, address1.value, address2.value, address3.value, date.value)">
+              Next
+            </button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <form>
+
+          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+            This is the tree node template for leaf nodes
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+               use a disabled button to provide padding for tree leaf
+              <button mat-icon-button disabled></button>
+              <mat-checkbox #checkbox (click)="checkValue(node.name,checkbox.checked)">{{node.name}}</mat-checkbox>
+            </mat-tree-node>
+          This is the tree node template for expandable nodes
+            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+              <button mat-icon-button matTreeNodeToggle
+                      [attr.aria-label]="'toggle ' + node.name">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+              </button>
+              {{node.name}}
+            </mat-tree-node>
+          </mat-tree>
+
+          <ng-template matStepLabel>Done</ng-template>
+          <br>
+          <div>
+            <button mat-raised-button color="primary" class="back-button" matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" (click)="saveInterests(username.value)">Submit</button>
+          </div>
+        </form>
+
+      </mat-step> -->
+
+    </mat-horizontal-stepper>
+    <div class="space"></div>
+  </div>
+
+  <!-- <h2 *ngIf="registerv" style="color: white">Registered Successfully</h2> -->
+
+</div>

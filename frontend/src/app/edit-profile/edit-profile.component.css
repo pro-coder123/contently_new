@@ -1,0 +1,55 @@
+mat-card{
+    width: 80%;
+    margin: auto;
+    height: 100%;
+}
+
+.edit-profile-page{
+    /* background-image: url('../../assets/images/side_bg.jpg'); */
+}
+
+.genre-radio-group{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+.genre-radio-buttons{
+    margin-left: 10%;
+}
+
+.trending-books{
+    padding: 3%;
+    color: rgb(15, 15, 15);
+    /* text-shadow: 4px 4px #333333; */
+    background-image: url('../../assets/images/trend.jpg');
+    background-repeat: initial;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: 1px solid rgb(26, 26, 26);
+    outline-offset: -15px;
+    letter-spacing: 20px;
+    text-align: center;
+  }
+
+  .input-field{
+    padding-left: 3%;
+  }
+
+  .genre-input{
+    width: 100%;
+  }
+  
+  .fields-two{
+    display: inline;
+  }
+
+  .input-item{
+    margin-left: 1%;
+  }
+
+  .input-group{
+    width: 80%;
+  }
+
+
+ 

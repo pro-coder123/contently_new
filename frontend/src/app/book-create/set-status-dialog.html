@@ -1,0 +1,16 @@
+<mat-card>
+    <h2>Set Status</h2>
+<mat-form-field style="width: 100%;">
+  <mat-label></mat-label>
+  <mat-select [(value)]="chapterStatus">
+    <mat-option value="Ready to Edit">Ready to Edit</mat-option>
+    <mat-option value="Mark as Edited">Mark as Edited</mat-option>
+    <mat-option value="Ready to Design">Ready to Design</mat-option>
+    <mat-option value="Mark as Designed">Mark as Designed</mat-option>
+    <mat-option value="Finished">Finished</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-card-actions >
+  <button  mat-button color="primary" (click)="setChapterStatus()" >Confirm</button>
+</mat-card-actions>
+</mat-card>

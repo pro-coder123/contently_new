@@ -1,0 +1,17 @@
+<div>
+    <h5 style="color: rgb(255, 255, 255)">Recommended selling price : {{recommended_price}}</h5>    
+    <form [formGroup]="setPriceFormGroup">
+        <div>
+        <mat-form-field class="fields">
+            <input formControlName = "price" #price matInput placeholder="Enter selling price" type="number">
+            <span matPrefix>₹&nbsp;</span>
+            <mat-error *ngIf="setPriceFormGroup.hasError('required','price')">
+                Please Enter Price
+            </mat-error>
+        </mat-form-field>
+        </div>
+        <div>
+        <button mat-raised-button color="primary"  (click)="savePublication(price.value)">Submit</button>
+        </div>
+    </form>
+</div>

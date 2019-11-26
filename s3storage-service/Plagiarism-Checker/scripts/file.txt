@@ -1,0 +1,4 @@
+Uncomment the following line in /etc/default/docker DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4"
+Restart the Docker service sudo service docker restart
+Delete any images which have cached the invalid DNS settings.
+Build again and the problem should be solved

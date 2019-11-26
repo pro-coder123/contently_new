@@ -1,0 +1,10 @@
+<mat-dialog-content>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Section Name" [(ngModel)]="data" #newSectionName >
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" >Add</button>
+</mat-dialog-actions>

@@ -1,0 +1,13 @@
+<div class="our-authors-body">
+  <mat-card class="author-card" *ngFor="let member of members">
+    <mat-card-header></mat-card-header>
+    <mat-card-content>
+      <img mat-card-image class="author-avatar" src="{{member.avatar}}" alt="avatar image">
+      <mat-card-title>{{member.name}}</mat-card-title>
+      <mat-card-subtitle>
+        <p>{{member.email}}</p>
+        <p>{{member.contactNumber}}</p>
+      </mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+</div>

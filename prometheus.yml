@@ -1,0 +1,14 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+
+    static_configs:
+      - targets: ['13.126.150.171:9090']
+  - job_name: 'spring-actuator'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['13.126.150.171:8088', '13.126.150.171:8005', '13.126.150.171:8082', '13.126.150.171:8081', '13.126.150.171:8716','13.126.150.171:8083','13.126.150.171:8181','13.126.150.171:8010']

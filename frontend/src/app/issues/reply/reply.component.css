@@ -1,0 +1,56 @@
+.msg-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-msg, .same-user {
+  flex-basis: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 80%;
+}
+
+.single-msg {
+  align-self: flex-start;
+  background-color: #fff7c2;
+  color: black;
+}
+
+.same-user {
+  background-color: #ff7676;
+  align-self: flex-end;
+  color: black;
+}
+
+mat-icon{
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+mat-dialog-actions {
+  position: fixed;
+  height: 60px;
+  width: 75%;
+}
+form{
+  width: 100%;
+  height: 100%;
+}
+button{
+  position: absolute;
+  height: 70%;
+  max-width: 10%;
+  min-width: 10%;
+}
+.sender{
+  font-size: 12px;
+  color: rgb(24, 24, 24);
+}
+textarea{
+  height: 100%;
+  width: 88%;
+  resize: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}

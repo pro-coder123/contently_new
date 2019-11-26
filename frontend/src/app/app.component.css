@@ -1,0 +1,88 @@
+/* new landing page */
+
+mat-sidenav-container {
+  height: 100%;
+  justify-content: space-between;
+  background: inherit;
+}
+
+.sidenav {
+  width: 80%;
+}
+
+.sidenav > mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  box-shadow: 0 0 10px 0 black;
+}
+mat-sidenav-content{
+  padding: 0;
+}
+.search-form{
+  padding-left: 10px;
+}
+
+.parallax{
+  /* The image used */
+  background-color: white;
+  background-image: url('../assets/images/side_bg.jpg');
+  /*background-image: url("https://parade.com/wp-content/uploads/2018/08/book-stack-library-club-reading-ftr.jpg");*/
+
+  /* Set a specific height */
+  height: max-content;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+/* new landing page */
+
+body {
+  flex: 1;
+  font-family: 'Dosis', sans-serif;
+}
+
+.mat-toolbar{
+  background-image: url('../assets/images/trend.jpg');
+  color : rgb(0, 0, 0);
+}
+.footer{
+  background-color: white;
+  padding-top: 10px;
+}
+
+.notification-menu{
+  width: 80%;
+}
+.test-menu{
+  width: 100%;
+}
+
+.notification{
+  background-color: rgb(27, 27, 27);
+  margin: 2%;
+  font-size: 75%;
+}
+
+.router-outlet{
+  /* background-image: url('../assets/images/main_bg.jpeg'); */
+}
+.app-footer{
+  position: absolute;
+  bottom: 0;
+}
+
+mat-nav-list{
+  display: block;
+}
+/* .push{
+  height: 170px;
+} */

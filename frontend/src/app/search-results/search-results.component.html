@@ -1,0 +1,16 @@
+<br>
+<div class="container">
+  <section class="row container">
+    <div *ngFor="let search of searchBooks, index as i" class="col-sm-3">
+      <div class="t1 panel" id="cardhere">
+        <img (click)="bookDetails(search.id)" src="https://convertedbooks.s3.ap-south-1.amazonaws.com/{{search.id}}.jpg" alt="top_track">
+        <p>{{search.title}}</p>
+      </div>
+    </div>
+
+    <div *ngIf="noResults">
+      <h2>No Results</h2>
+    </div>
+    <div class="no-results"></div>
+  </section>
+</div>

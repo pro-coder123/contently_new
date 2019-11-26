@@ -1,0 +1,25 @@
+<mat-dialog-content>
+  <div class="issue-title">
+    <h4>{{issue.title}}</h4>
+  </div>
+  <div class="msg-wrapper">
+    <div class="single-msg" *ngFor="let reply of replyList"
+         [ngClass]="{'same-user' : ifSameUser(reply.commentator)}">
+      <div class="sender">
+        <mat-icon>person</mat-icon>
+        {{reply.commentator}}
+        <mat-icon>access_time</mat-icon>
+        {{reply.repliedOn}}
+      </div>
+      <p mat-line>{{reply.message}}</p>
+    </div>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <form method="post" #replyForm="ngForm" (ngSubmit)="postReply(replyForm)">
+    <textarea autocomplete="false" autocapitalize="sentences" placeholder="Reply to this issue" ngModel
+              name="val"></textarea>
+    <button mat-raised-button color="primary"><mat-icon>send</mat-icon></button>
+  </form>
+</mat-dialog-actions>

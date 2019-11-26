@@ -1,0 +1,21 @@
+footer{
+  background-color: #141414;
+  color: white;
+  padding-top: 10px;
+}
+.mat-form-field-empty.mat-form-field-label {
+  color: green;
+}
+i {
+  font-size: 2em;
+  color: white;
+}
+i:hover{
+  color: lightgrey;
+  transition: 0.5s;
+}
+.list-icon > li{
+  display: inline;
+  list-style-type: none;
+  padding-right: 30px;
+}

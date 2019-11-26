@@ -1,0 +1,171 @@
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+<div class="home-container">
+
+    <div class="landing">
+      <div class="landing-top"></div>
+      <div class="landing-content">
+        <img src="https://www.logolynx.com/images/logolynx/36/362087235008be84086f892df697f50d.png" alt="">
+        <p class="landing-body">For Readers By Readers</p>
+
+      </div>
+    </div>
+
+    <div class="trending-books">
+    <h3 style="margin-left: 4%;">Trending Books</h3>
+    </div>
+    <!-- <div class="container" id="recbox"
+    fxLayout
+    fxLayout.xs="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="10px"
+    fxLayoutGap.xs="0">
+
+    <div *ngFor="let bookvar of bookVar">
+    <mat-card (click)="bookDetails(bookvar.bookId)" id="cardhere">
+
+        <img mat-card-image src="https://www.booktopia.com.au/blog/wp-content/uploads/2018/12/the-arsonist.jpg" alt="card image">
+        <h6>{{bookvar.bookName}}</h6>
+        <br>
+    </mat-card></div>
+    <br></div> -->
+    <br>
+      <div class="content-cards">
+        <mat-card class="content-card" *ngFor="let bookvar of bookVar, index as i" (click)="bookDetails(bookvar.bookId)">
+            <!-- <h6>{{bookvar.bookName}}</h6> -->
+            <div class="card-width"></div>
+            <img  src="https://convertedbooks.s3.ap-south-1.amazonaws.com/{{bookvar.bookId}}.jpg" alt="card image">
+        </mat-card>
+      </div>
+  <br><br>
+  <div class="our-programs" >
+      <div class="trending-books">
+          <h3 style="margin-left: 4%;" >Our Programs</h3>
+          </div><br>
+    <div class="our-programs-header">
+        <!-- <div class="home-body">
+      <h5>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut
+        reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut
+        reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!
+      </h5></div> -->
+
+    </div>
+    <div class="our-programs-body">
+      <div class="programs">
+      <div class="reader">
+        <div class="reader-text" >
+          <h4>We offer huge varieties of contents to our readers</h4>
+          <p>
+            <i class="material-icons">library_books</i>
+            More than 24,450+ huge varieties of books
+          </p>
+          <p>
+            <i class="material-icons">person</i>
+            Over 1,00,000 satisfied customers
+          </p>
+          <p>
+            <i class="material-icons">person_add</i>
+            130 Readers joining our community every week
+          </p>
+        </div>
+        <img  class="user-image" src="https://joansproject.files.wordpress.com/2016/01/wp-14528274073611.jpg?w=1400"
+             alt="">
+      </div>
+    </div>
+      <div class="programs">
+      <div class="author">
+        <div class="author-text">
+          <h4>Lot of authors use our services to write their own content</h4>
+          <p>
+            <i class="material-icons">person</i>
+            Over 1,500 authors
+          </p>
+          <p>
+            <i class="material-icons">person_add</i>
+            130 authors joining our community every week
+          </p>
+        </div>
+        <img class="user-image"
+             src="https://images.unsplash.com/photo-1508780709619-79562169bc64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+             alt="">
+      </div>
+    </div>
+
+     <div class="programs">
+      <div class="designer">
+        <div class="designer-text">
+          <h4>We work with professional designers to make the content look eye catchy</h4>
+          <p>
+            <i class="material-icons">person</i>
+            Over 400 designers
+          </p>
+          <p>
+            <i class="material-icons">person_add</i>
+            Each having minimum of 4-5 years of experience
+          </p>
+        </div>
+        <img class="user-image"
+             src="https://images.unsplash.com/3/doctype-hi-res.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1346&q=80"
+             alt="">
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="our-authors">
+      <div class="trending-books">
+          <h3 class="testimonies"style="margin-left: 4%;">Testimonies</h3>
+          </div>
+          <br>
+    <!-- <div class="our-authors-heading">
+        <br>
+            <h5 style="color: white;">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora,
+        adipisci at provident.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora,
+        adipisci at provident.
+      </h5><br>
+    </div> -->
+    <div class="our-authors-body">
+      <mat-card class="author-card">
+        <mat-card-header></mat-card-header>
+        <mat-card-content>
+          <img class="author-avatar"
+               src="../../assets/images/Chetan_Bhagat.jpg"
+               alt="">
+          <mat-card-title>Chetan Bhagat</mat-card-title>
+          <mat-card-subtitle class="author-subtitle">
+              Chetan Bhagat is an Indian author and columnist, known for his Indian-English novels about young middle class Indians. Bhagat was included in Time magazine's list of World's 100 Most Influential People in 2010.
+          </mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="author-card">
+        <mat-card-header></mat-card-header>
+        <mat-card-content>
+          <img class="author-avatar"
+               src="../../assets/images/Arundhati_Roy_W.jpg"
+               alt="">
+          <mat-card-title>Arundhati Roy</mat-card-title>
+          <mat-card-subtitle class="author-subtitle">
+              Suzanna Arundhati Roy is an Indian author best known for her novel The God of Small Things, which won the Man Booker Prize for Fiction in 1997 and became the biggest-selling book by a non-expatriate Indian author. She is also a political activist involved in human rights and environmental causes.
+          </mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="author-card">
+        <mat-card-header></mat-card-header>
+        <mat-card-content>
+          <img class="author-avatar"
+               src="../../assets/images/Amitav_Ghosh.jpg"
+               alt="">
+          <mat-card-title>Amitav Ghosh</mat-card-title>
+          <mat-card-subtitle class="author-subtitle">
+              Amitav Ghosh is an Indian writer and the winner of the 54th Jnanpith award, best known for his work in English fiction.
+          </mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

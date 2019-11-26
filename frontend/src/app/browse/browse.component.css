@@ -1,0 +1,14 @@
+.all-books{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.book-card{
+  height: 90%;
+  width: 200px;
+  margin: 10px;
+}
+.book-cover{
+  height: 100%;
+  width: 100%;
+}

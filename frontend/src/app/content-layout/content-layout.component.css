@@ -1,0 +1,48 @@
+/*material css*/
+mat-card{
+  width: 80%;
+  margin: 20px auto;
+}
+.mat-input{
+  width: 100%;
+}
+.input-group{
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+.input-item{
+  margin: 5px;
+}
+textarea{
+  resize: none;
+}
+/*material css*/
+
+
+.trending-books{
+  padding: 3%;
+  color: rgb(15, 15, 15);
+  /* text-shadow: 4px 4px #333333; */
+  background-image: url('../../assets/images/trend.jpg');
+  background-repeat: initial;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: 1px solid rgb(26, 26, 26);
+  outline-offset: -15px;
+  letter-spacing: 20px;
+}
+
+.create-content-component{
+  background-image: url('../../assets/images/side_bg.jpg');
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .trending-books{
+    padding: 4%;
+
+  }
+
+}

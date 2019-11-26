@@ -1,0 +1,113 @@
+#recbox
+{
+  margin-top:5%;
+  width: 100%;
+  overflow-x: scroll;
+
+}
+.content-cards::-webkit-scrollbar{
+
+  height: 0;
+  width: 0;
+  color: transparent;
+}
+@keyframes mymove {
+  from {left: 0px;}
+  to {left: 100%;}
+}
+@keyframes mymovee {
+  from {left: 100%;}
+  to {left: 0px;}
+}
+#cardhere:hover{
+  background-color: #ff656d;
+  opacity: 0.9;
+}
+
+h1,h2,h3,h4{
+  margin: 2% 2% 2% 2%;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+#cardhere
+{
+  border: 2px solid rgb(190, 175, 147);
+  /* border-radius: 20px; */
+  height: 390px;
+  width: 200px;
+  overflow: visible;
+  animation: mymove 5s infinite;
+}
+
+#cardheret:hover{
+  background-color: #ff656d;
+  opacity: 0.9;
+  color: white;
+}
+#cardheret
+{
+  border: 2px solid rgb(190, 175, 147);
+  border-radius: 20px;
+  height: 390px;
+  width: 200px;
+  overflow: visible;
+  animation: mymovee 5s infinite; 
+  text-transform: uppercase;
+ 
+}
+
+.trending-books{
+  padding: 3%;
+  color: rgb(15, 15, 15);
+  /* text-shadow: 4px 4px #333333; */
+  background-image: url('../../assets/images/trend.jpg');
+  background-repeat: initial;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: 1px solid rgb(26, 26, 26);
+  outline-offset: -15px;
+  letter-spacing: 20px;
+}
+
+.page-after-component{
+  
+}
+
+.content-card{
+  margin: 1%;
+  background-color: rgb(26, 26, 26);
+  animation: mymove 10s infinite;
+
+}
+
+.content-card img{
+  width: 100%;
+  height: 100%;
+}
+
+.card-width{
+  width: 200px;
+}
+
+
+.content-cards{
+  display: flex;
+  overflow-x: scroll;
+}
+
+@media only screen and (max-width: 600px) {
+   
+  .content-card{
+    margin: 1%;
+    background-color: rgb(26, 26, 26);
+    animation: mymove 10s infinite;
+    height:100%;
+    width: 100%;
+  }
+  
+  .content-card img{
+    width: 100%;
+    height: 100%;
+  }
+}
